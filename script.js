@@ -1,20 +1,28 @@
-const app = document.getElementById('app');
-const startFallingButton = document.getElementById('startFalling');
-
-function createPoop() {
-  const poop = document.createElement('div');
-  poop.textContent = '💩';
-  poop.className = 'poop';
-  poop.style.left = `${Math.random() * 100}vw`;
-  poop.style.animationDuration = `${Math.random() * 1 + 2}s`;
-  poop.style.animationDelay = `${Math.random() * 2}s`;
-  app.appendChild(poop);
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: #f0f0f0;
 }
 
-function startFalling() {
-  for (let i = 0; i < 50; i++) {
-    createPoop();
+@keyframes falling {
+  0% {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
   }
 }
 
-startFallingButton.addEventListener('click', startFalling);
+.poop {
+  font-size: 30px;
+  position: absolute;
+  animation-name: falling;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
