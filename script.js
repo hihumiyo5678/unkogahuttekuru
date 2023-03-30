@@ -1,31 +1,20 @@
-const app = document.getElementById("app");
-const addPoopButton = document.getElementById("addPoop");
-
-let numberOfPoops = 50;
-
-addPoopButton.addEventListener("click", startFalling);
+const app = document.getElementById('app');
+const startFallingButton = document.getElementById('startFalling');
 
 function createPoop() {
-  const poop = document.createElement("span");
-  poop.innerHTML = "💩";
-  poop.classList.add("poop");
-  
-  const xPos = Math.random() * 100;
-  const animationDuration = 2 + Math.random() * 4;
-  
-  poop.style.left = xPos + "%";
-  poop.style.animationDuration = animationDuration + "s";
-  
+  const poop = document.createElement('div');
+  poop.textContent = '💩';
+  poop.className = 'poop';
+  poop.style.left = `${Math.random() * 100}vw`;
+  poop.style.animationDuration = `${Math.random() * 1 + 2}s`;
+  poop.style.animationDelay = `${Math.random() * 2}s`;
   app.appendChild(poop);
-  
-  setTimeout(() => {
-    poop.remove();
-  }, animationDuration * 1000);
 }
 
 function startFalling() {
-  for (let i = 0; i < numberOfPoops; i++) {
+  for (let i = 0; i < 50; i++) {
     createPoop();
   }
-  numberOfPoops += 10;
 }
+
+startFallingButton.addEventListener('click', startFalling);
